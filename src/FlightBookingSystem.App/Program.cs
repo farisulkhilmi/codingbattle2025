@@ -30,9 +30,7 @@ namespace FlightBookingSystem.App
                 var dbBuilder = new DbContextOptionsBuilder<AppDbContext>();
                 dbBuilder.UseSqlite("Data Source=flightbooking.db");
 
-
                 using var dbContext = new AppDbContext(dbBuilder.Options);
-
 
                 Console.WriteLine("Initializing database...");
                 dbContext.Database.EnsureCreated();
