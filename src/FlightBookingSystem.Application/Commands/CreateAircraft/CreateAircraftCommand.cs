@@ -1,9 +1,9 @@
-﻿using FlightBookingSystem.Domain.Domain;
+﻿using FlightBookingSystem.Domain.Dto;
 using MediatR;
 
 namespace FlightBookingSystem.Application.Commands.CreateAircraft
 {
-    public class CreateAircraftCommand : IRequest<Aircraft>
+    public class CreateAircraftCommand : AircraftRequestDto, IRequest<Guid>
     {
     }
 }

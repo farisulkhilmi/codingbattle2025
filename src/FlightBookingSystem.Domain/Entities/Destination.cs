@@ -1,4 +1,4 @@
-﻿namespace FlightBookingSystem.Domain.Domain
+﻿namespace FlightBookingSystem.Domain.Entities
 {
     public class Destination : BaseDomain
     {

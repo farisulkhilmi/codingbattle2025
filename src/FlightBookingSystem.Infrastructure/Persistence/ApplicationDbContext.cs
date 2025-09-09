@@ -1,16 +1,16 @@
 ﻿using FlightBookingSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FlightBookingSystem.Infrastructure
+namespace FlightBookingSystem.Infrastructure.Persistence
 {
-    public class AppDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<Aircraft> Aircraft { get; set; }
+        public DbSet<Aircraft> Aircrafts { get; set; }
         public DbSet<Destination> Destinations { get; set; }
         public DbSet<FlightRoute> FlightRoutes { get; set; }
-        public DbSet<Order> Order { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }

@@ -8,12 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
     <PackageReference Include="MediatR" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FlightBookingSystem.Domain\FlightBookingSystem.Domain.csproj" />
-    <ProjectReference Include="..\FlightBookingSystem.Infrastructure\FlightBookingSystem.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
