@@ -10,5 +10,6 @@
         public Guid AircraftId { get; set; }
         public Aircraft Aircraft { get; set; }
         public int ScheduledDay { get; set; }
+        public int SeatAvailibity { get; set; }
     }
 }

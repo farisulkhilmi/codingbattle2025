@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlightBookingSystem.App.Menu
+﻿namespace FlightBookingSystem.App.Menu
 {
-    public class LoginMenu
+    public static class LoginMenu
     {
-        public static void ShowLogin()
+        public static void ShowLogin(IServiceProvider services)
         {
             Console.WriteLine("=== Welcome to the Dang Goreng Airline Booking System! ===");
             Console.WriteLine();

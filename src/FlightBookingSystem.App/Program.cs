@@ -1,56 +1,29 @@
 ﻿using FlightBookingSystem.App.Menu;
+using FlightBookingSystem.Application.DependencyInjection;
 using FlightBookingSystem.Infrastructure;
+using FlightBookingSystem.Infrastructure.DependencyInjection;
+using FlightBookingSystem.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FlightBookingSystem.App
 {
-    internal class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.Title = "Flight Booking System";
+            var services = new ServiceCollection()
+                .RegisterApplication()
+                .RegisterInfrastructure()
+                .BuildServiceProvider();
 
-            try
+            using (var scope = services.CreateScope())
             {
-                checkDbConnection();
-
-                LoginMenu.ShowLogin();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                db.Database.EnsureCreated();
             }
 
+            LoginMenu.ShowLogin(services);
         }
-
-        private static void checkDbConnection()
-        {
-            try
-            {
-                var dbBuilder = new DbContextOptionsBuilder<AppDbContext>();
-                dbBuilder.UseSqlite("Data Source=flightbooking.db");
-
-                using var dbContext = new AppDbContext(dbBuilder.Options);
-
-                Console.WriteLine("Initializing database...");
-                dbContext.Database.EnsureCreated();
-
-                var canConnect = dbContext.Database.CanConnect();
-
-                if (canConnect)
-                {
-                    Console.WriteLine("Database initialized successfully.");
-                }
-                else
-                {
-                    throw new Exception("Unable to connect to the database.");
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
     }
 }
