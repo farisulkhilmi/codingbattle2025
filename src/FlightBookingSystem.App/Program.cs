@@ -1,2 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using FlightBookingSystem.App.Menu;
+
+namespace FlightBookingSystem.App
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            LoginMenu.ShowLogin();
+        }
+    }
+}

@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FlightBookingSystem.Application\FlightBookingSystem.Application.csproj" />
+    <ProjectReference Include="..\FlightBookingSystem.Domain\FlightBookingSystem.Domain.csproj" />
+    <ProjectReference Include="..\FlightBookingSystem.Infrastructure\FlightBookingSystem.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
