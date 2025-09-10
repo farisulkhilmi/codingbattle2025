@@ -5,10 +5,12 @@ namespace FlightBookingSystem.App.UserInterface
     public sealed class LoginMenu : ILoginMenu
     {
         private readonly IRegisterAircraft _regAircraft;
+        private readonly IRegisterDestination _regDestination;
 
-        public LoginMenu(IRegisterAircraft regAircraft)
+        public LoginMenu(IRegisterAircraft regAircraft, IRegisterDestination regDestination)
         {
             _regAircraft = regAircraft;
+            _regDestination = regDestination;
         }
 
         public void Show()
@@ -31,10 +33,10 @@ namespace FlightBookingSystem.App.UserInterface
                     break;
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:
-                    ShowPassengerPanel(); 
+                    ShowPassengerPanel();
                     break;
-                default: 
-                    Console.WriteLine("Invalid Input."); 
+                default:
+                    Console.WriteLine("Invalid Input.");
                     break;
             }
         }
@@ -65,6 +67,7 @@ namespace FlightBookingSystem.App.UserInterface
                         break;
                     case ConsoleKey.D2:
                     case ConsoleKey.NumPad2:
+                        _regDestination.Show();
                         break;
                     case ConsoleKey.D7:
                     case ConsoleKey.NumPad7:

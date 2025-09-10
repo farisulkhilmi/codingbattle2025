@@ -23,6 +23,13 @@ namespace FlightBookingSystem.Application.Commands.CreateDestination
                 CreatedAt = DateTime.UtcNow
             };
 
+
+            var isExist = await _repo.FindByName(request.Name, cancellationToken);
+            if (isExist.Count() > 0)
+            {
+                return Guid.Empty;
+            }
+
             await _repo.AddAsync(destination, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
 

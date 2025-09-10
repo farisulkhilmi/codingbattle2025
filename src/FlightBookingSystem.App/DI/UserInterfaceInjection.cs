@@ -10,6 +10,7 @@ namespace FlightBookingSystem.App.DI
         {
             services.AddSingleton<ILoginMenu, LoginMenu>();
             services.AddSingleton<IRegisterAircraft, RegisterAircraft>();
+            services.AddSingleton<IRegisterDestination, RegisterDestination>();
 
             return services;
         }
