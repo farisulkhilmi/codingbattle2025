@@ -5,7 +5,10 @@ namespace FlightBookingSystem.Infrastructure.Persistence
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
+        {
+        
+        }
 
         public DbSet<Aircraft> Aircrafts { get; set; }
         public DbSet<Destination> Destinations { get; set; }
@@ -14,11 +17,5 @@ namespace FlightBookingSystem.Infrastructure.Persistence
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlite("Data Source = flightbooking.db");
-        }
     }
 }
