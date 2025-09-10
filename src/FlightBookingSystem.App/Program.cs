@@ -1,4 +1,6 @@
-﻿using FlightBookingSystem.App.Menu;
+﻿using FlightBookingSystem.App.DI;
+using FlightBookingSystem.App.Menu;
+using FlightBookingSystem.App.UserInterface.Contracts;
 using FlightBookingSystem.Application.DependencyInjection;
 using FlightBookingSystem.Infrastructure;
 using FlightBookingSystem.Infrastructure.DependencyInjection;
@@ -15,6 +17,7 @@ namespace FlightBookingSystem.App
             var services = new ServiceCollection()
                 .RegisterApplication()
                 .RegisterInfrastructure()
+                .AddConsoleUi()
                 .BuildServiceProvider();
 
             using (var scope = services.CreateScope())
@@ -23,7 +26,8 @@ namespace FlightBookingSystem.App
                 db.Database.EnsureCreated();
             }
 
-            LoginMenu.ShowLogin(services);
+            var login = services.GetRequiredService<ILoginMenu>();
+            login.Show();
         }
     }
 }
