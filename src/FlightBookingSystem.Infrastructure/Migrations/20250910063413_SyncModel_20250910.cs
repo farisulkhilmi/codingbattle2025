@@ -5,7 +5,7 @@
 namespace FlightBookingSystem.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Update_BaseDomain : Migration
+    public partial class SyncModel_20250910 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

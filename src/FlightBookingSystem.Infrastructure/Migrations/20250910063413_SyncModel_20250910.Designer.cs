@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlightBookingSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250910060131_Update_BaseDomain")]
-    partial class Update_BaseDomain
+    [Migration("20250910063413_SyncModel_20250910")]
+    partial class SyncModel_20250910
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

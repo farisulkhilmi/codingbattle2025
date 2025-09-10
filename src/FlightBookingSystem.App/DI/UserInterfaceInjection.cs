@@ -8,8 +8,6 @@ namespace FlightBookingSystem.App.DI
     {
         public static IServiceCollection AddConsoleUi(this IServiceCollection services)
         {
-            services.AddSingleton<IAdminPanel, AdminPanel>();
-            services.AddSingleton<IPassengerPanel, PassengerPanel>();
             services.AddSingleton<ILoginMenu, LoginMenu>();
             services.AddSingleton<IRegisterAircraft, RegisterAircraft>();
 

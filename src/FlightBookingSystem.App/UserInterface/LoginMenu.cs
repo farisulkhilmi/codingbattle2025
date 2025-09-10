@@ -4,17 +4,16 @@ namespace FlightBookingSystem.App.UserInterface
 {
     public sealed class LoginMenu : ILoginMenu
     {
-        private readonly IAdminPanel _admin;
-        private readonly IPassengerPanel _passenger;
+        private readonly IRegisterAircraft _regAircraft;
 
-        public LoginMenu(IAdminPanel admin, IPassengerPanel passenger)
-        { 
-            _admin = admin; 
-            _passenger = passenger; 
+        public LoginMenu(IRegisterAircraft regAircraft)
+        {
+            _regAircraft = regAircraft;
         }
 
         public void Show()
         {
+            Console.Clear();
             Console.WriteLine("=== Welcome to the Dang Goreng Airline Booking System! ===");
             Console.WriteLine();
             Console.WriteLine("Login as:");
@@ -27,17 +26,63 @@ namespace FlightBookingSystem.App.UserInterface
             switch (key.Key)
             {
                 case ConsoleKey.D1:
-                case ConsoleKey.NumPad1: 
-                    _admin.Show(); 
+                case ConsoleKey.NumPad1:
+                    ShowAdminPanel();
                     break;
                 case ConsoleKey.D2:
-                case ConsoleKey.NumPad2: 
-                    _passenger.Show(); 
+                case ConsoleKey.NumPad2:
+                    ShowPassengerPanel(); 
                     break;
                 default: 
                     Console.WriteLine("Invalid Input."); 
                     break;
             }
+        }
+
+        private void ShowAdminPanel()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("==== ADMIN PANEL ====");
+                Console.WriteLine();
+                Console.WriteLine("1. Register Aircraft");
+                Console.WriteLine("2. Add Destination");
+                Console.WriteLine("3. Create Flight Route");
+                Console.WriteLine("4. Run Booking Service");
+                Console.WriteLine("5. Go to Next Day");
+                Console.WriteLine("6. Run Flight");
+                Console.WriteLine("7. Exit");
+
+                var key = Console.ReadKey();
+                Console.WriteLine();
+
+                switch (key.Key)
+                {
+                    case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
+                        _regAircraft.Show();
+                        break;
+                    case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
+                        break;
+                    case ConsoleKey.D7:
+                    case ConsoleKey.NumPad7:
+                        Show();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input.");
+                        break;
+                }
+            }
+        }
+
+        private static void ShowPassengerPanel()
+        {
+            Console.WriteLine("=== Passenger Panel ===");
+            Console.WriteLine("(TODO) Search flights, pick seat, etc.");
+            Console.WriteLine("Press any key to go back...");
+            Console.ReadKey();
         }
     }
 }
