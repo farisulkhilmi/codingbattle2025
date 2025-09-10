@@ -20,7 +20,6 @@ namespace FlightBookingSystem.Application.Commands.CreateAircraft
             var aircraft = new Aircraft
             {
                 Name = request.Name,
-                TailNumber = request.TailNumber,
                 SeatCapacity = request.SeatCapacity,
                 CreatedAt = DateTime.UtcNow
             };

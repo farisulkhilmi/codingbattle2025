@@ -3,6 +3,7 @@ using System;
 using FlightBookingSystem.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlightBookingSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250910055922_Remove_TailNumber_from_Aircraft")]
+    partial class Remove_TailNumber_from_Aircraft
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
@@ -27,6 +30,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -40,6 +44,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -57,6 +62,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DestinationCode")
@@ -71,6 +77,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -91,6 +98,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("DestinationId")
@@ -113,6 +121,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -140,6 +149,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("FlightRouteId")
@@ -155,6 +165,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("UserId")
@@ -177,6 +188,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -187,6 +199,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -204,6 +217,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -222,6 +236,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -239,6 +254,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("RoleId")
@@ -248,6 +264,7 @@ namespace FlightBookingSystem.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UpdatedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("UserId")

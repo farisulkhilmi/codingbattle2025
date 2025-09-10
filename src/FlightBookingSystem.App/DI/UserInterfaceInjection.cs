@@ -11,6 +11,7 @@ namespace FlightBookingSystem.App.DI
             services.AddSingleton<IAdminPanel, AdminPanel>();
             services.AddSingleton<IPassengerPanel, PassengerPanel>();
             services.AddSingleton<ILoginMenu, LoginMenu>();
+            services.AddSingleton<IRegisterAircraft, RegisterAircraft>();
 
             return services;
         }

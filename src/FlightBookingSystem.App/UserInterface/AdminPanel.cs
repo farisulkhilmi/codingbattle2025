@@ -1,20 +1,17 @@
 ﻿using FlightBookingSystem.App.UserInterface.Contracts;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FlightBookingSystem.App.UserInterface
 {
     public sealed class AdminPanel : IAdminPanel
     {
         private readonly IMediator _mediator;
-        
-        public AdminPanel(IMediator mediator)
+        private readonly IRegisterAircraft _regAircraft;
+
+        public AdminPanel(IMediator mediator, IRegisterAircraft regAircraft)
         {
             _mediator = mediator;
+            _regAircraft = regAircraft;
         }
 
         public void Show()
@@ -34,6 +31,20 @@ namespace FlightBookingSystem.App.UserInterface
 
                 var key = Console.ReadKey();
                 Console.WriteLine();
+
+                switch (key.Key)
+                {
+                    case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
+                        _regAircraft.Show();
+                        break;
+                    case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input.");
+                        break;
+                }
             }
         }
     }
