@@ -16,12 +16,9 @@ namespace FlightBookingSystem.Infrastructure.Persistence.Repositories
             await _db.Destinations.AddAsync(destination, ct);
         }
 
-        public async Task<IEnumerable<Destination>> FindByName(string destinationName, CancellationToken cancellationToken)
+        public async Task<Destination?> GetDestinationByName(string destinationName, CancellationToken cancellationToken)
         {
-            var destination = await _db.Destinations
-               .Where(d => d.Name == destinationName).ToListAsync();
-
-            return destination;
+            return await _db.Destinations.FirstOrDefaultAsync(a => a.Name.ToLower() == destinationName, cancellationToken);
         }
     }
 }

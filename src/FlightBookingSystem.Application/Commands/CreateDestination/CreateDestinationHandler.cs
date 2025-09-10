@@ -24,8 +24,8 @@ namespace FlightBookingSystem.Application.Commands.CreateDestination
             };
 
 
-            var isExist = await _repo.FindByName(request.Name, cancellationToken);
-            if (isExist.Count() > 0)
+            var isExist = await _repo.GetDestinationByName(request.Name.ToLower(), cancellationToken);
+            if (isExist != null)
             {
                 return Guid.Empty;
             }
