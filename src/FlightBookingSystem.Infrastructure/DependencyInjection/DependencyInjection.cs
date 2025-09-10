@@ -14,6 +14,7 @@ namespace FlightBookingSystem.Infrastructure.DependencyInjection
 
             services.AddScoped<IAircraftRepository, AircraftRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IDestinationRepository, DestinationRepository>();
 
             return services;
         }

@@ -1,11 +1,8 @@
 ﻿using FlightBookingSystem.App.DI;
-using FlightBookingSystem.App.Menu;
 using FlightBookingSystem.App.UserInterface.Contracts;
 using FlightBookingSystem.Application.DependencyInjection;
-using FlightBookingSystem.Infrastructure;
 using FlightBookingSystem.Infrastructure.DependencyInjection;
 using FlightBookingSystem.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FlightBookingSystem.App
