@@ -59,6 +59,7 @@ namespace FlightBookingSystem.Application.Commands.CreateFlightRoute
             }
 
             await _flightRouterepo.AddAsync(flightRoute, cancellationToken);
+            await _uow.SaveChangesAsync(cancellationToken);
 
             return flightRoute.Id;
         }
