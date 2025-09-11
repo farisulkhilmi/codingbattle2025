@@ -3,7 +3,7 @@ using MediatR;
 
 namespace FlightBookingSystem.Application.Commands.CreateOrder
 {
-    public class CreateOrderCommand : OrderRequestDto, IRequest<Guid>
+    public class CreateOrderCommand : OrderRequestDto, IRequest<OrderFlightResult>
     {
     }
 }

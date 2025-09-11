@@ -2,6 +2,6 @@
 {
     public interface IOrderFlight
     {
-        void Show();
+        Task Show();
     }
 }
