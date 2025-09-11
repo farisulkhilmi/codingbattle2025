@@ -6,7 +6,6 @@ namespace FlightBookingSystem.App.UserInterface
     {
         private readonly IRegisterAircraft _regAircraft;
         private readonly IRegisterDestination _regDestination;
-
         public LoginMenu(IRegisterAircraft regAircraft, IRegisterDestination regDestination)
         {
             _regAircraft = regAircraft;

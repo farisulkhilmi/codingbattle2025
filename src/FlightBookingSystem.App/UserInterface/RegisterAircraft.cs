@@ -48,10 +48,13 @@ namespace FlightBookingSystem.App.UserInterface
             {
                 case ConsoleKey.D1:
                 case ConsoleKey.NumPad1:
+                    Console.WriteLine();
                     var _ = RegisterAircraftCommand(aircraftName, seatCapacityValue);
                     break;
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:
+                    Show();
+                    break;
                 default:
                     Console.WriteLine("Invalid Input.");
                     break;
@@ -74,7 +77,7 @@ namespace FlightBookingSystem.App.UserInterface
             }
             else
             {
-                Console.WriteLine("Failed to register aircraft.");
+                Console.WriteLine("Failed to register aircraft, aircraft name already exist");
                 Console.ReadKey();
             }
         }

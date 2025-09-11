@@ -1,5 +1,6 @@
 ﻿using FlightBookingSystem.Application.Abstractions;
 using FlightBookingSystem.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlightBookingSystem.Infrastructure.Persistence.Repositories
 {
@@ -16,6 +17,10 @@ namespace FlightBookingSystem.Infrastructure.Persistence.Repositories
         {
             await _db.Aircrafts.AddAsync(aircraft, ct);
         }
-       
+
+        public async Task<Aircraft?> GetAircraftByNameAsync(string name, CancellationToken ct)
+        {
+            return await _db.Aircrafts.FirstOrDefaultAsync(a => a.Name.ToLower() == name, ct);
+        }
     }
 }

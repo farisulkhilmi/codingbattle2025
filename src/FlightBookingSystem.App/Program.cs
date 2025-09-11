@@ -44,7 +44,6 @@ namespace FlightBookingSystem.App
             {
                 var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 db.Database.Migrate();
-
             }
 
             var login = host.Services.GetRequiredService<ILoginMenu>();

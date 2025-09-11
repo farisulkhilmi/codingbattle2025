@@ -16,6 +16,7 @@ namespace FlightBookingSystem.Infrastructure.DependencyInjection
             services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite(connString));
 
             services.AddScoped<IAircraftRepository, AircraftRepository>();
+            services.AddScoped<IFlightRouteRepository, FlightRouteRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IDestinationRepository, DestinationRepository>();
 

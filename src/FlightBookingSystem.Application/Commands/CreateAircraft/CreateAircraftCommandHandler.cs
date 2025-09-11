@@ -24,6 +24,13 @@ namespace FlightBookingSystem.Application.Commands.CreateAircraft
                 CreatedAt = DateTime.UtcNow
             };
 
+            // check if an aircraft with the same name already exists
+            var existingAircraft = await _repo.GetAircraftByNameAsync(request.Name.ToLower(), cancellationToken);
+            if (existingAircraft != null)
+            {
+                return Guid.Empty;
+            }
+
             await _repo.AddAsync(aircraft, cancellationToken);
             await _uow.SaveChangesAsync(cancellationToken);
 

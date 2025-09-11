@@ -5,5 +5,6 @@ namespace FlightBookingSystem.Application.Abstractions
     public interface IAircraftRepository
     {
         Task AddAsync(Aircraft aircraft, CancellationToken ct);
+        Task<Aircraft?> GetAircraftByNameAsync(string name, CancellationToken ct);
     }
 }
