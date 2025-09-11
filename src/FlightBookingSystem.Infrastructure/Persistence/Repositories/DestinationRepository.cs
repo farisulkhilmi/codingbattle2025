@@ -20,5 +20,10 @@ namespace FlightBookingSystem.Infrastructure.Persistence.Repositories
         {
             return await _db.Destinations.FirstOrDefaultAsync(a => a.Name.ToLower() == destinationName, cancellationToken);
         }
+
+        public async Task<IEnumerable<Destination>> GetAllDestinations(CancellationToken ct)
+        {
+            return await _db.Destinations.ToListAsync(ct);
+        }
     }
 }

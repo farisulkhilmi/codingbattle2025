@@ -6,10 +6,14 @@ namespace FlightBookingSystem.App.UserInterface
     {
         private readonly IRegisterAircraft _regAircraft;
         private readonly IRegisterDestination _regDestination;
-        public LoginMenu(IRegisterAircraft regAircraft, IRegisterDestination regDestination)
+        private readonly IOrderFlight _orderFlight;
+        private readonly IRegisterFlightRoute _registerFlightRoute;
+        public LoginMenu(IRegisterAircraft regAircraft, IRegisterDestination regDestination, IOrderFlight orderFlight, IRegisterFlightRoute registerFlightRoute)
         {
             _regAircraft = regAircraft;
             _regDestination = regDestination;
+            _orderFlight = orderFlight;
+            _registerFlightRoute = registerFlightRoute;
         }
 
         public void Show()
@@ -68,6 +72,10 @@ namespace FlightBookingSystem.App.UserInterface
                     case ConsoleKey.NumPad2:
                         _regDestination.Show();
                         break;
+                    case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
+                        _registerFlightRoute.Show();
+                        break;
                     case ConsoleKey.D7:
                     case ConsoleKey.NumPad7:
                         Show();
@@ -79,12 +87,36 @@ namespace FlightBookingSystem.App.UserInterface
             }
         }
 
-        private static void ShowPassengerPanel()
+        private void ShowPassengerPanel()
         {
-            Console.WriteLine("=== Passenger Panel ===");
-            Console.WriteLine("(TODO) Search flights, pick seat, etc.");
-            Console.WriteLine("Press any key to go back...");
-            Console.ReadKey();
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("=== Passenger Panel ===");
+                Console.WriteLine();
+                Console.WriteLine("1. Order Flight");
+                Console.WriteLine("2. Cancel Flight");
+                Console.WriteLine();
+                Console.WriteLine("0. Exit");
+                Console.ReadKey();
+
+                var key = Console.ReadKey();
+                Console.WriteLine();
+                switch (key.Key)
+                {
+                    case ConsoleKey.D0:
+                    case ConsoleKey.NumPad0:
+                        Show();
+                        break;
+                    case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
+                        _orderFlight.Show();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input.");
+                        break;
+                }
+            }
         }
     }
 }

@@ -6,5 +6,7 @@ namespace FlightBookingSystem.Application.Abstractions
     {
         Task AddAsync(Destination destination, CancellationToken ct);
         Task<Destination?> GetDestinationByName(string destinationName, CancellationToken cancellationToken);
+
+        Task<IEnumerable<Destination>> GetAllDestinations(CancellationToken ct);
     }
 }

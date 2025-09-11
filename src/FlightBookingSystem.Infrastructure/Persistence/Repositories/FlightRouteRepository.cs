@@ -22,5 +22,14 @@ namespace FlightBookingSystem.Infrastructure.Persistence.Repositories
         {
             return await _db.FlightRoutes.FirstOrDefaultAsync(x => x.OriginId == originId && x.DestinationId == destId && x.ScheduledDay == day, ct);
         }
+
+        public async Task<IEnumerable<FlightRoute>> GetAllFlightRoutesAsync(CancellationToken ct)
+        {
+            return await _db.FlightRoutes
+                .Include(fr => fr.Origin)
+                .Include(fr => fr.Destination)
+                .Include(fr => fr.Aircraft)
+                .ToListAsync(ct);
+        }
     }
 }
