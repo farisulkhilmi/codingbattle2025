@@ -13,13 +13,15 @@ namespace FlightBookingSystem.App.UserInterface
         private readonly IRegisterDestination _regDestination;
         private readonly IOrderFlight _orderFlight;
         private readonly IRegisterFlightRoute _registerFlightRoute;
-        public LoginMenu(IMediator mediator, IRegisterAircraft regAircraft, IRegisterDestination regDestination, IOrderFlight orderFlight, IRegisterFlightRoute registerFlightRoute)
+        private readonly ICancelOrder _cancelOrder;
+        public LoginMenu(IMediator mediator, IRegisterAircraft regAircraft, IRegisterDestination regDestination, IOrderFlight orderFlight, IRegisterFlightRoute registerFlightRoute, ICancelOrder cancelOrder)
         {
             _mediator = mediator;
             _regAircraft = regAircraft;
             _regDestination = regDestination;
             _orderFlight = orderFlight;
             _registerFlightRoute = registerFlightRoute;
+            _cancelOrder = cancelOrder;
         }
 
         public void Show()
@@ -138,6 +140,10 @@ namespace FlightBookingSystem.App.UserInterface
                     case ConsoleKey.D1:
                     case ConsoleKey.NumPad1:
                         _orderFlight.Show();
+                        break;
+                    case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
+                        _cancelOrder.Show();
                         break;
                     default:
                         Console.WriteLine("Invalid Input.");

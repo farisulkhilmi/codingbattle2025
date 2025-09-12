@@ -16,7 +16,7 @@ namespace FlightBookingSystem.App.UserInterface
         public void Show()
         {
             Console.Clear();
-            Console.WriteLine("== Register Aircraft ==");
+            Console.WriteLine("=== Register Aircraft ===");
             Console.Write("Enter Aircraft Name: ");
             string? aircraftName = Console.ReadLine();
 
