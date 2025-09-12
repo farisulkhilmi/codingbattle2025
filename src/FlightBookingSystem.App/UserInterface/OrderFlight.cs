@@ -18,7 +18,7 @@ namespace FlightBookingSystem.App.UserInterface
         public async Task Show()
         {
             Console.Clear();
-            Console.WriteLine("== Order Flight ==");
+            Console.WriteLine("=== Order Flight ===");
 
             var flightRoutes = await _flightRouteRepository.GetAllFlightRoutesAsync(default);
 

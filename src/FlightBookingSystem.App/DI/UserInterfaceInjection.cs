@@ -1,7 +1,5 @@
 ﻿using FlightBookingSystem.App.UserInterface;
 using FlightBookingSystem.App.UserInterface.Contracts;
-using FlightBookingSystem.Application.Abstractions;
-using FlightBookingSystem.Infrastructure.Persistence.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FlightBookingSystem.App.DI
@@ -15,6 +13,7 @@ namespace FlightBookingSystem.App.DI
             services.AddScoped<IRegisterDestination, RegisterDestination>();
             services.AddScoped<IRegisterFlightRoute, RegisterFlightRoute>();
             services.AddScoped<IOrderFlight, OrderFlight>();
+            services.AddScoped<ICancelOrder, CancelOrder>();
 
             return services;
         }
