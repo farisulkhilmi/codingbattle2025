@@ -13,7 +13,7 @@ namespace FlightBookingSystem.App.UserInterface
         private readonly IRegisterDestination _regDestination;
         private readonly IOrderFlight _orderFlight;
         private readonly IRegisterFlightRoute _registerFlightRoute;
-        public LoginMenu(Mediator mediator, IRegisterAircraft regAircraft, IRegisterDestination regDestination, IOrderFlight orderFlight, IRegisterFlightRoute registerFlightRoute)
+        public LoginMenu(IMediator mediator, IRegisterAircraft regAircraft, IRegisterDestination regDestination, IOrderFlight orderFlight, IRegisterFlightRoute registerFlightRoute)
         {
             _mediator = mediator;
             _regAircraft = regAircraft;
