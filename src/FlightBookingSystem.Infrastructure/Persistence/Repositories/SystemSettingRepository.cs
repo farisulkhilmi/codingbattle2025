@@ -25,7 +25,7 @@ namespace FlightBookingSystem.Infrastructure.Persistence.Repositories
             await _db.SystemSettings.AddAsync(setting, ct);
         }
 
-        public async Task UpdateSettingAsync(string key, int value, CancellationToken ct)
+        public async Task<SystemSetting> UpdateSettingAsync(string key, int value, CancellationToken ct)
         {
             var setting = await _db.SystemSettings.FirstOrDefaultAsync(s => s.Name == key, ct);
             if (setting != null)
@@ -33,6 +33,8 @@ namespace FlightBookingSystem.Infrastructure.Persistence.Repositories
                 setting.Value = value;
             }
             _db.SystemSettings.Update(setting);
+
+            return setting;
         }
     }
 }

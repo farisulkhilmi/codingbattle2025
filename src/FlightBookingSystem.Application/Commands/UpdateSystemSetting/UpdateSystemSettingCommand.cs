@@ -3,7 +3,7 @@ using MediatR;
 
 namespace FlightBookingSystem.Application.Commands.UpdateSystemSetting
 {
-    public class UpdateSystemSettingCommand : Setting, IRequest
+    public class UpdateSystemSettingCommand : Setting, IRequest<string>
     {
     }
 }

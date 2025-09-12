@@ -6,6 +6,6 @@ namespace FlightBookingSystem.Application.Abstractions
     {
         Task<int> GetSettingAsync(string key, CancellationToken ct);
         Task SetSettingAsync(SystemSetting setting, CancellationToken ct);
-        Task UpdateSettingAsync(string key, int value, CancellationToken ct);
+        Task<SystemSetting> UpdateSettingAsync(string key, int value, CancellationToken ct);
     }
 }

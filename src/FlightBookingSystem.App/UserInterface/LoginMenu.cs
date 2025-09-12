@@ -1,5 +1,8 @@
 ﻿using FlightBookingSystem.App.UserInterface.Contracts;
+using FlightBookingSystem.Application.Abstractions;
 using FlightBookingSystem.Application.Commands.CreateSystemSetting;
+using FlightBookingSystem.Application.Commands.UpdateSystemSetting;
+using FlightBookingSystem.Application.Queries.GetSystemSettingByKey;
 using FlightBookingSystem.Domain.Constant;
 using FlightBookingSystem.Domain.Dto;
 using MediatR;
@@ -104,6 +107,18 @@ namespace FlightBookingSystem.App.UserInterface
                     case ConsoleKey.NumPad3:
                         _registerFlightRoute.Show();
                         break;
+                    case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
+                        RunBookingService();
+                        break;
+                    case ConsoleKey.D5:
+                    case ConsoleKey.NumPad5:
+                        GoToNextDay();
+                        break;
+                    case ConsoleKey.D6:
+                    case ConsoleKey.NumPad6:
+                        //_registerFlightRoute.Show();
+                        break;
                     case ConsoleKey.D7:
                     case ConsoleKey.NumPad7:
                         Show();
@@ -112,6 +127,56 @@ namespace FlightBookingSystem.App.UserInterface
                         Console.WriteLine("Invalid Input.");
                         break;
                 }
+            }
+        }
+
+        private void RunBookingService()
+        {
+            var cmd = new UpdateSystemSettingCommand();
+            cmd.Key = Contants.BookingSystemStatus;
+            cmd.Value = 1;
+            var result = _mediator.Send(cmd);
+            if (result.Result == "Success")
+            {
+                Console.WriteLine("Booking Service is now running.");
+                Console.WriteLine("Press any key to back.");
+                Console.ReadKey();
+                ShowAdminPanel();
+            }
+            else
+            {
+                Console.WriteLine("Failed to run Booking Service.");
+                Console.WriteLine("Press any key to back.");
+                Console.ReadKey();
+                ShowAdminPanel();
+            }
+        }
+
+        private void GoToNextDay()
+        {
+            Console.WriteLine("Advancing to the next day...");
+
+            var cmdGetCalender = new GetSystemSettingByKeyQuery();
+            cmdGetCalender.Key = Contants.Calender;
+            var currentDay = _mediator.Send(cmdGetCalender).Result;
+
+            var cmd = new UpdateSystemSettingCommand();
+            cmd.Key = Contants.Calender;
+            cmd.Value = currentDay + 1;
+            var result = _mediator.Send(cmd);
+            if (result.Result == "Success")
+            {
+                Console.WriteLine($"Current day is now: {currentDay + 1}");
+                Console.WriteLine("Press any key to back.");
+                Console.ReadKey();
+                ShowAdminPanel();
+            }
+            else
+            {
+                Console.WriteLine("Failed to advancing to next day.");
+                Console.WriteLine("Press any key to back.");
+                Console.ReadKey();
+                ShowAdminPanel();
             }
         }
 
