@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "FlightBookingSystem.App": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

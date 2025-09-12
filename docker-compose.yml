@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  flightbookingsystem:
+    build:
+      context: .
+      dockerfile: src/FlightBookingSystem.App/Dockerfile
+    volumes:
+      - ./sqlite-data:/app/Data
+    stdin_open: true
+    tty: true
