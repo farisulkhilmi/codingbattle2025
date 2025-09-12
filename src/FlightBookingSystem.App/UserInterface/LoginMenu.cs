@@ -1,6 +1,6 @@
 ﻿using FlightBookingSystem.App.UserInterface.Contracts;
-using FlightBookingSystem.Application.Abstractions;
 using FlightBookingSystem.Application.Commands.CreateSystemSetting;
+using FlightBookingSystem.Application.Commands.UpdateFlightRoute;
 using FlightBookingSystem.Application.Commands.UpdateSystemSetting;
 using FlightBookingSystem.Application.Queries.GetFlightRouteByDay;
 using FlightBookingSystem.Application.Queries.GetSystemSettingByKey;
@@ -121,7 +121,7 @@ namespace FlightBookingSystem.App.UserInterface
                         break;
                     case ConsoleKey.D6:
                     case ConsoleKey.NumPad6:
-                        //_registerFlightRoute.Show();
+                        RunFlight();
                         break;
                     case ConsoleKey.D7:
                     case ConsoleKey.NumPad7:
@@ -168,7 +168,7 @@ namespace FlightBookingSystem.App.UserInterface
             cmd.Key = Contants.Calender;
             cmd.Value = currentDay + 1;
             var result = await _mediator.Send(cmd);
-            
+
             var todayFlightQry = new GetFlightRouteByDayQuery();
             todayFlightQry.Day = currentDay + 1;
             var todayFlights = await _mediator.Send(todayFlightQry);
@@ -210,6 +210,52 @@ namespace FlightBookingSystem.App.UserInterface
             {
                 Console.WriteLine($"Flight {flight.Origin.Name} {flight.Destination.Name} is scheduled for {day}");
             }
+        }
+
+        private async Task RunFlight()
+        {
+
+            var cmdGetCalender = new GetSystemSettingByKeyQuery();
+            cmdGetCalender.Key = Contants.Calender;
+
+            var currentDay = await _mediator.Send(cmdGetCalender);
+
+            var cmdFlightQry = new GetFlightRouteByDayQuery();
+            cmdFlightQry.Day = currentDay;
+            var flightRoutes = await _mediator.Send(cmdFlightQry);
+
+            if (flightRoutes != null)
+            {
+                foreach (var flight in flightRoutes)
+                {
+                    var cmd = new UpdateFligthRouteCommand();
+                    cmd.Id = flight.Id;
+
+                    var result = await _mediator.Send(cmd);
+
+                    if (result != Guid.Empty)
+                    {
+                        Console.WriteLine($"Flight {flight.Origin.Name} to {flight.Destination.Name} has taken off successfully.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Flight {flight.Origin.Name} to {flight.Destination.Name} failed to take off.");
+                    }
+                }
+                Console.WriteLine("All flights for today have taken off.");
+                Console.WriteLine("Press any key to back.");
+                Console.ReadKey();
+                ShowAdminPanel();
+            }
+            else
+            {
+                Console.WriteLine("No flights scheduled for today.");
+                Console.WriteLine("Press any key to back.");
+                Console.ReadKey();
+                ShowAdminPanel();
+            }
+
+
         }
 
         private void ShowPassengerPanel()
