@@ -21,7 +21,7 @@ namespace FlightBookingSystem.Application.Commands.CreateSystemSetting
                 var systemSetting = new SystemSetting 
                 {
                     Name = setting.Key,
-                    Value = int.Parse(setting.Value),
+                    Value = setting.Value,
                     CreatedAt = DateTime.UtcNow
                 };
 
