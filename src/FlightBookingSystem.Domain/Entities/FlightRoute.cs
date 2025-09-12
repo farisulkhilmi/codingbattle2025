@@ -11,5 +11,6 @@
         public Aircraft Aircraft { get; set; }
         public int ScheduledDay { get; set; }
         public int SeatAvailibity { get; set; }
+        public bool IsDeparted { get; set; }
     }
 }

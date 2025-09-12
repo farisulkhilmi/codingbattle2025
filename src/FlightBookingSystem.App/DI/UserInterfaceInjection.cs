@@ -1,5 +1,7 @@
 ﻿using FlightBookingSystem.App.UserInterface;
 using FlightBookingSystem.App.UserInterface.Contracts;
+using FlightBookingSystem.Application.Abstractions;
+using FlightBookingSystem.Infrastructure.Persistence.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FlightBookingSystem.App.DI
@@ -8,11 +10,11 @@ namespace FlightBookingSystem.App.DI
     {
         public static IServiceCollection AddConsoleUi(this IServiceCollection services)
         {
-            services.AddSingleton<ILoginMenu, LoginMenu>();
-            services.AddSingleton<IRegisterAircraft, RegisterAircraft>();
-            services.AddSingleton<IRegisterDestination, RegisterDestination>();
-            services.AddSingleton<IRegisterFlightRoute, RegisterFlightRoute>();
-            services.AddSingleton<IOrderFlight, OrderFlight>();
+            services.AddScoped<ILoginMenu, LoginMenu>();
+            services.AddScoped<IRegisterAircraft, RegisterAircraft>();
+            services.AddScoped<IRegisterDestination, RegisterDestination>();
+            services.AddScoped<IRegisterFlightRoute, RegisterFlightRoute>();
+            services.AddScoped<IOrderFlight, OrderFlight>();
 
             return services;
         }
