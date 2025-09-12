@@ -76,14 +76,14 @@ namespace FlightBookingSystem.App.UserInterface
                 {
                     Console.WriteLine();
                     Console.WriteLine("Your flight includes a transit.");
-                    Console.WriteLine($"First Leg: {result.Order1.FlightRoute.Origin.Name} to {result.Order1.FlightRoute.Destination.Name} | Aircraft: {result.Order1.FlightRoute.Aircraft.Name} | Seat: {result.Order1.BookingCode.Split('-')[2].TrimStart('0')} | Scheduled Day: {result.Order1.FlightRoute.ScheduledDay}");
-                    Console.WriteLine($"Second Leg: {result.Order2.FlightRoute.Origin.Name} to {result.Order2.FlightRoute.Destination.Name} | Aircraft: {result.Order2.FlightRoute.Aircraft.Name} | Seat: {result.Order2.BookingCode.Split('-')[2].TrimStart('0')} | Scheduled Day: {result.Order2.FlightRoute.ScheduledDay}");
+                    Console.WriteLine($"First Leg: Booking Code: {result.Order1.BookingCode} | {result.Order1.FlightRoute.Origin.Name} to {result.Order1.FlightRoute.Destination.Name} | Aircraft: {result.Order1.FlightRoute.Aircraft.Name} | Seat: {result.Order1.BookingCode.Split('-')[2].TrimStart('0')} | Scheduled Day: {result.Order1.FlightRoute.ScheduledDay}");
+                    Console.WriteLine($"Second Leg: Booking Code: {result.Order2.BookingCode} | {result.Order2.FlightRoute.Origin.Name} to {result.Order2.FlightRoute.Destination.Name} | Aircraft: {result.Order2.FlightRoute.Aircraft.Name} | Seat: {result.Order2.BookingCode.Split('-')[2].TrimStart('0')} | Scheduled Day: {result.Order2.FlightRoute.ScheduledDay}");
                 }
                 else
                 {
                     Console.WriteLine();
                     Console.WriteLine("You have a direct flight.");
-                    Console.WriteLine($"Flight: {result.Order1.FlightRoute.Origin.Name} to {result.Order1.FlightRoute.Destination.Name} | Aircraft: {result.Order1.FlightRoute.Aircraft.Name} | Seat: {result.Order1.BookingCode.Split('-')[2].TrimStart('0')} | Scheduled Day: {result.Order1.FlightRoute.ScheduledDay}");
+                    Console.WriteLine($"Flight: Booking Code: {result.Order1.BookingCode} | {result.Order1.FlightRoute.Origin.Name} to {result.Order1.FlightRoute.Destination.Name} | Aircraft: {result.Order1.FlightRoute.Aircraft.Name} | Seat: {result.Order1.BookingCode.Split('-')[2].TrimStart('0')} | Scheduled Day: {result.Order1.FlightRoute.ScheduledDay}");
                 }
 
                 Console.ReadKey();

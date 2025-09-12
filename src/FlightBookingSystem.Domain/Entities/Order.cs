@@ -8,5 +8,6 @@
         public FlightRoute FlightRoute { get; set; }
         public int ScheduledDay { get; set; }
         public int SeatNumber { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

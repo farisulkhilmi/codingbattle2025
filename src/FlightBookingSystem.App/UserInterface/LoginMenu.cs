@@ -98,7 +98,6 @@ namespace FlightBookingSystem.App.UserInterface
                 Console.WriteLine("2. Cancel Flight");
                 Console.WriteLine();
                 Console.WriteLine("0. Exit");
-                Console.ReadKey();
 
                 var key = Console.ReadKey();
                 Console.WriteLine();
