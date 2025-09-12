@@ -1,15 +1,21 @@
 ﻿using FlightBookingSystem.App.UserInterface.Contracts;
+using FlightBookingSystem.Application.Commands.CreateSystemSetting;
+using FlightBookingSystem.Domain.Constant;
+using FlightBookingSystem.Domain.Dto;
+using MediatR;
 
 namespace FlightBookingSystem.App.UserInterface
 {
     public sealed class LoginMenu : ILoginMenu
     {
+        private readonly IMediator _mediator;
         private readonly IRegisterAircraft _regAircraft;
         private readonly IRegisterDestination _regDestination;
         private readonly IOrderFlight _orderFlight;
         private readonly IRegisterFlightRoute _registerFlightRoute;
-        public LoginMenu(IRegisterAircraft regAircraft, IRegisterDestination regDestination, IOrderFlight orderFlight, IRegisterFlightRoute registerFlightRoute)
+        public LoginMenu(Mediator mediator, IRegisterAircraft regAircraft, IRegisterDestination regDestination, IOrderFlight orderFlight, IRegisterFlightRoute registerFlightRoute)
         {
+            _mediator = mediator;
             _regAircraft = regAircraft;
             _regDestination = regDestination;
             _orderFlight = orderFlight;
@@ -18,6 +24,8 @@ namespace FlightBookingSystem.App.UserInterface
 
         public void Show()
         {
+            InitiateSystem();
+
             Console.Clear();
             Console.WriteLine("=== Welcome to the Dang Goreng Airline Booking System! ===");
             Console.WriteLine();
@@ -42,6 +50,26 @@ namespace FlightBookingSystem.App.UserInterface
                     Console.WriteLine("Invalid Input.");
                     break;
             }
+        }
+
+        private void InitiateSystem()
+        {
+            var settingCalender = new Setting
+            {
+                Key = Contants.Calender,
+                Value = 1
+            };
+
+            var settingBookingSystemStatus = new Setting
+            {
+                Key = Contants.BookingSystemStatus,
+                Value = 0
+            };
+
+            var cmdSetting = new CreateSystemSettingCommand();
+            cmdSetting.Settings = new List<Setting> { settingCalender, settingBookingSystemStatus };
+
+            var _ = _mediator.Send(cmdSetting);
         }
 
         private void ShowAdminPanel()
