@@ -2,9 +2,11 @@
 using FlightBookingSystem.Application.Abstractions;
 using FlightBookingSystem.Application.Commands.CreateSystemSetting;
 using FlightBookingSystem.Application.Commands.UpdateSystemSetting;
+using FlightBookingSystem.Application.Queries.GetFlightRouteByDay;
 using FlightBookingSystem.Application.Queries.GetSystemSettingByKey;
 using FlightBookingSystem.Domain.Constant;
 using FlightBookingSystem.Domain.Dto;
+using FlightBookingSystem.Domain.Entities;
 using MediatR;
 
 namespace FlightBookingSystem.App.UserInterface
@@ -77,7 +79,7 @@ namespace FlightBookingSystem.App.UserInterface
             var _ = _mediator.Send(cmdSetting);
         }
 
-        private void ShowAdminPanel()
+        private async Task ShowAdminPanel()
         {
             while (true)
             {
@@ -115,7 +117,7 @@ namespace FlightBookingSystem.App.UserInterface
                         break;
                     case ConsoleKey.D5:
                     case ConsoleKey.NumPad5:
-                        GoToNextDay();
+                        await GoToNextDay();
                         break;
                     case ConsoleKey.D6:
                     case ConsoleKey.NumPad6:
@@ -154,21 +156,41 @@ namespace FlightBookingSystem.App.UserInterface
             }
         }
 
-        private void GoToNextDay()
+        private async Task GoToNextDay()
         {
             Console.WriteLine("Advancing to the next day...");
 
             var cmdGetCalender = new GetSystemSettingByKeyQuery();
             cmdGetCalender.Key = Contants.Calender;
-            var currentDay = _mediator.Send(cmdGetCalender).Result;
+            var currentDay = await _mediator.Send(cmdGetCalender);
 
             var cmd = new UpdateSystemSettingCommand();
             cmd.Key = Contants.Calender;
             cmd.Value = currentDay + 1;
-            var result = _mediator.Send(cmd);
-            if (result.Result == "Success")
+            var result = await _mediator.Send(cmd);
+            
+            var todayFlightQry = new GetFlightRouteByDayQuery();
+            todayFlightQry.Day = currentDay + 1;
+            var todayFlights = await _mediator.Send(todayFlightQry);
+
+            var tomorrowFlightQry = new GetFlightRouteByDayQuery();
+            tomorrowFlightQry.Day = currentDay + 2;
+            var tomorrowFlights = await _mediator.Send(todayFlightQry);
+
+            if (result == "Success")
             {
+
                 Console.WriteLine($"Current day is now: {currentDay + 1}");
+                if (todayFlights.Count != 0)
+                {
+                    PrintScheduledFlight(todayFlights, "today");
+                }
+
+                if (tomorrowFlights.Count != 0)
+                {
+                    PrintScheduledFlight(tomorrowFlights, "tomorrow");
+                }
+
                 Console.WriteLine("Press any key to back.");
                 Console.ReadKey();
                 ShowAdminPanel();
@@ -179,6 +201,14 @@ namespace FlightBookingSystem.App.UserInterface
                 Console.WriteLine("Press any key to back.");
                 Console.ReadKey();
                 ShowAdminPanel();
+            }
+        }
+
+        private static void PrintScheduledFlight(List<FlightRoute> flights, string day)
+        {
+            foreach (var flight in flights)
+            {
+                Console.WriteLine($"Flight {flight.Origin.Name} {flight.Destination.Name} is scheduled for {day}");
             }
         }
 

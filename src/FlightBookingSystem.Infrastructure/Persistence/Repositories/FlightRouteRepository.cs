@@ -31,5 +31,15 @@ namespace FlightBookingSystem.Infrastructure.Persistence.Repositories
                 .Include(fr => fr.Aircraft)
                 .ToListAsync(ct);
         }
+
+        public async Task<List<FlightRoute>> GetFlightRouteByDayAsync(int day)
+        {
+            return await _db.FlightRoutes
+                .Include(fr => fr.Origin)
+                .Include(fr => fr.Destination)
+                .Include(fr => fr.Aircraft)
+                .Where(fr => fr.ScheduledDay == day)
+                .ToListAsync();
+        }
     }
 }
